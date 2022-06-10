@@ -17,6 +17,14 @@ export class ProductService {
     this.initProducts();
   }
 
+  getProductById(id: number): Observable<Product> {
+    return this
+            .products$
+            .pipe(
+              map(products => products.find(product => product.id == id))
+            )
+  }
+
   initProducts() {
     let url:string = this.baseUrl + '?$orderby=ModifiedDate%20desc';
 
